@@ -1,0 +1,330 @@
+--[[
+Only 3 Games are supported at the moment:
+-Auto Rap Battles
+-Prison Life
+-Ninja Legends
+
+Games that aren't supported will still work but will only have basic features and no main tab
+]]
+
+
+if game.PlaceId ==  579955134 then
+
+    print('Executed For ARB')
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Realm - Auto Rap Battles", "Ocean")
+    local Main = Window:NewTab("Main")
+    local Player = Window:NewTab("Player")
+    local Credits = Window:NewTab("Credits")
+
+    --Main
+    local MainSection = Main:NewSection("Main")
+
+-- Teleports
+    MainSection:NewDropdown("Teleports", "Teleports the player", {"Dj Booth", "Stage", "Floor", "Toilets"}, function(v)
+        print(v)
+        
+        if v == "Dj Booth" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-90, 65, -214)
+        end
+
+        if v == "Stage" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-77, 65, -214)
+        end
+
+        if v == "Floor" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-60, 62, -214)
+        end
+
+        if v == "Toilets" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-60, 62, -278)
+        end
+
+    end)
+
+    --Voting
+    MainSection:NewButton("Vote Player 1 (Left)", "Votes the Player on the left", function()
+        print("Clicked p1")
+        for i = 0,1 do
+            game.Workspace.Votes:FireServer(false,"p1")
+            game:GetService("RunService").Heartbeat:Wait()
+        end
+    end)
+    
+        MainSection:NewButton("Vote Player 2 (Right)", "Votes the Player on the Right", function()
+        print("Clicked p2")
+        for i = 0,1 do
+            game.Workspace.Votes:FireServer(false,"p2")
+            game:GetService("RunService").Heartbeat:Wait()
+        end
+    end)
+    
+    --Player
+    local PlayerSection = Main:NewSection("Player")
+
+    PlayerSection:NewSlider("Walkspeed", "Changes the player walkspeed", 250, 16, function(s)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    end)
+
+    PlayerSection:NewSlider("JumpPower", "Changes the player walkspeed", 500, 50, function(s)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+    end)
+
+PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
+    getgenv().godmode = v
+    while true do
+        if not getgenv().godmode then return end
+        print("Debug")
+        game.Players.LocalPlayer.Character.Humanoid.Health = 100
+        wait()
+    end
+end)
+
+PlayerSection:NewButton("Inf Health", "Infinite ammount of health", function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+    end)
+
+
+    --Credits
+    local CreditsSection = Credits:NewSection("Main")
+    local Extras = Credits:NewSection("Other/Extra")
+
+    CreditsSection:NewButton("Used Kavo UI Library by xHeptc", "UI Lib", function()
+    end)
+
+    CreditsSection:NewButton("All Scripts made by Me Realm#2102 on discord", "Script Maker", function()
+    end)
+
+    CreditsSection:NewButton("Join My Discord", "Discord", function()
+    end)
+
+elseif game.PlaceId == 155615604 then
+    print('Executed Realm Hub For Prison Life')
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("Realm Hub - Prison Life", "Ocean")
+     
+        -- MAIN
+        local Main = Window:NewTab("Main")
+        local MainSection = Main:NewSection("Main")
+     
+        MainSection:NewDropdown("Give Gun", "Gives the localplayer a gun", {"M9", "Remington 870", "AK-47"}, function(v)
+            local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
+        end)
+     
+        MainSection:NewDropdown("Gun Mod", "Makes the gun op", {"M9", "Remington 870", "AK-47"}, function(v)
+            local module = nil
+            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
+                module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
+            elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(v) then
+                module = require(game:GetService("Players").LocalPlayer.Character[v].GunStates)
+            end
+            if module ~= nil then
+                module["MaxAmmo"] = math.huge
+                module["CurrentAmmo"] = math.huge
+                module["StoredAmmo"] = math.huge
+                module["FireRate"] = 0.000001
+                module["Spread"] = 0
+                module["Range"] = math.huge
+                module["Bullets"] = 10
+                module["ReloadTime"] = 0.000001
+                module["AutoFire"] = true
+            end
+        end)
+     
+        --Player
+        local PlayerSection = Main:NewSection("Player")
+
+    PlayerSection:NewSlider("Walkspeed", "Changes the player walkspeed", 250, 16, function(s)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    end)
+
+    PlayerSection:NewSlider("JumpPower", "Changes the player walkspeed", 500, 50, function(s)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+    end)
+
+PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
+    getgenv().godmode = v
+    while true do
+        if not getgenv().godmode then return end
+        print("Debug")
+        game.Players.LocalPlayer.Character.Humanoid.Health = 100
+        wait()
+    end
+end)
+
+        --Credits
+        local Credits = Window:NewTab("Credits")
+        local Credits = Player:NewSection("Credits")
+
+        Credits:NewButton("Used Kavo UI Library by xHeptc", "UI Lib", function()
+        end)
+    
+        Credits:NewButton("All Scripts made by Me Realm#2102 on discord", "Script Maker", function()
+        end)
+    
+        Credits:NewButton("Join My Discord", "Discord", function()
+        end)
+
+
+
+
+    elseif game.PlaceId == 3956818381 then
+        print('Executed Realm Hub For Ninja Legends')
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("Realm Hub - Ninja Legends", "Ocean")
+     
+        -- MAIN
+        local Main = Window:NewTab("Main")
+        local MainSection = Main:NewSection("Main")
+     
+        MainSection:NewToggle("Auto Swing", "Make your player autoswing", function(v)
+            getgenv().autoswing = v
+            while true do
+                if not getgenv().autoswing then return end
+                for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v:FindFirstChild("ninjitsuGain") then
+                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                        break
+                    end
+                end
+                local A_1 = "swingKatana"
+                local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+                Event:FireServer(A_1)
+                wait(0.1)
+            end
+        end)
+     
+        MainSection:NewToggle("Auto Sell", "Makes your player autosell", function(v)
+            getgenv().autosell = v
+            while true do
+                if getgenv().autoswing == false then return end
+                game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                wait(0.1)
+                game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = CFrame.new(0,0,0)
+                wait(0.1)
+            end
+        end)
+     
+        MainSection:NewButton("Unlock all islands", "Unlocks all islands", function()
+            local oldcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetChildren()) do
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                wait(0.1)
+            end
+            wait(0.1)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcframe
+        end)
+        
+        MainSection:NewToggle("Auto buy all swords", "Auto buys all swords", function(v)
+            getgenv().buyswords = v
+            while true do
+                if not getgenv().buyswords then return end
+                local A_1 = "buyAllSwords"
+                local A_2 = "Inner Peace Island"
+                local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+                Event:FireServer(A_1, A_2)
+                wait(0.5)
+            end
+        end)
+     
+        MainSection:NewToggle("Auto buy all belts", "Auto buys all belts", function(v)
+            getgenv().buybelts = v
+            while true do
+                if not getgenv().buybelts then return end
+                local A_1 = "buyAllBelts"
+                local A_2 = "Inner Peace Island"
+                local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+                Event:FireServer(A_1, A_2)
+                wait(0.5)
+            end
+        end)
+
+                --Player
+                local Player = Window:NewTab("Player")
+                local PlayerSection = Main:NewSection("Player")
+
+                PlayerSection:NewSlider("Walkspeed", "Changes the player walkspeed", 250, 16, function(s)
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+                end)
+            
+                PlayerSection:NewSlider("JumpPower", "Changes the player walkspeed", 500, 50, function(s)
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+                end)
+            
+            PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
+                getgenv().godmode = v
+                while true do
+                    if not getgenv().godmode then return end
+                    print("Debug")
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 100
+                    wait()
+                end
+            end)
+
+     --Credits
+     local Credits = Window:NewTab("Credits")
+     local Credits = Player:NewSection("Credits")
+        
+        Credits:NewButton("Used Kavo UI Library by xHeptc", "UI Lib", function()
+        end)
+            
+        Credits:NewButton("All Scripts made by Me Realm#2102 on discord", "Script Maker", function()
+        end)
+            
+        Credits:NewButton("Join My Discord", "Discord", function()
+        end)
+
+
+
+    else
+        print('Game Not supported Or Found')
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("Realm - Game Not supported Or Found", "Ocean")
+        local Player = Window:NewTab("Player")
+        local Credits = Window:NewTab("Credits")
+
+        --Player
+
+        local PlayerSection = Player:NewSection("Player")
+
+        PlayerSection:NewSlider("Walkspeed", "Changes the player walkspeed", 250, 16, function(s)
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+        end)
+    
+        PlayerSection:NewSlider("JumpPower", "Changes the player walkspeed", 500, 50, function(s)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+        end)
+    
+    PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
+        getgenv().godmode = v
+        while true do
+            if not getgenv().godmode then return end
+            print("Debug")
+            game.Players.LocalPlayer.Character.Humanoid.Health = 100
+            wait()
+        end
+    end)
+
+    PlayerSection:NewButton("Inf Health", "Infinite ammount of health", function()
+        game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+        end)
+
+--Credits
+
+local Credits = Credits:NewSection("Credits")
+
+Credits:NewButton("Used Kavo UI Library by xHeptc", "UI Lib", function()
+end)
+    
+Credits:NewButton("All Scripts made by Me Realm#2102 on discord", "Script Maker", function()
+end)
+    
+Credits:NewButton("Join My Discord", "Discord", function()
+end)
+
+
+
+
+    end    
