@@ -156,7 +156,7 @@ end)
 
         --Credits
         local Credits = Window:NewTab("Credits")
-        local Credits = Player:NewSection("Credits")
+        local Credits = Credits:NewSection("Credits")
 
         Credits:NewButton("Used Kavo UI Library by xHeptc", "UI Lib", function()
         end)
@@ -243,7 +243,7 @@ end)
 
                 --Player
                 local Player = Window:NewTab("Player")
-                local PlayerSection = Main:NewSection("Player")
+                local PlayerSection = Player:NewSection("Player")
 
                 PlayerSection:NewSlider("Walkspeed", "Changes the player walkspeed", 250, 16, function(s)
                     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
@@ -265,7 +265,7 @@ end)
 
      --Credits
      local Credits = Window:NewTab("Credits")
-     local Credits = Player:NewSection("Credits")
+     local Credits = Credits:NewSection("Credits")
         
         Credits:NewButton("Used Kavo UI Library by xHeptc", "UI Lib", function()
         end)
@@ -327,4 +327,4 @@ end)
 
 
 
-    end    
+end    
