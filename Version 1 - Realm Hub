@@ -70,19 +70,19 @@ if game.PlaceId ==  579955134 then
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
     end)
 
-PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
-    getgenv().godmode = v
-    while true do
-        if not getgenv().godmode then return end
-        print("Debug")
-        game.Players.LocalPlayer.Character.Humanoid.Health = 100
-        wait()
-    end
-end)
-
-PlayerSection:NewButton("Inf Health", "Infinite ammount of health", function()
-    game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+    PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
+        getgenv().godmode = v
+        while true do
+            if not getgenv().godmode then return end
+            print("Debug")
+            game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+            wait()
+        end
     end)
+
+    PlayerSection:NewButton("Heal ", "Heal the Player Once To max health", function()
+        game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+        end)
 
 
     --Credits
@@ -254,15 +254,19 @@ end)
                     game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
                 end)
             
-            PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
-                getgenv().godmode = v
-                while true do
-                    if not getgenv().godmode then return end
-                    print("Debug")
-                    game.Players.LocalPlayer.Character.Humanoid.Health = 100
-                    wait()
-                end
-            end)
+                PlayerSection:NewToggle("Godmode", "Grants The Player God Mode", function(v)
+                    getgenv().godmode = v
+                    while true do
+                        if not getgenv().godmode then return end
+                        print("Debug")
+                        game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+                        wait()
+                    end
+                end)
+            
+                PlayerSection:NewButton("Heal ", "Heal the Player Once To max health", function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+                    end)
 
      --Credits
      local Credits = Window:NewTab("Credits")
@@ -275,6 +279,7 @@ end)
         end)
             
         Credits:NewButton("Join My Discord", "Discord", function()
+
         end)
 
 
@@ -303,12 +308,12 @@ end)
         while true do
             if not getgenv().godmode then return end
             print("Debug")
-            game.Players.LocalPlayer.Character.Humanoid.Health = 100
+            game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
             wait()
         end
     end)
 
-    PlayerSection:NewButton("Inf Health", "Infinite ammount of health", function()
+    PlayerSection:NewButton("Heal ", "Heal the Player Once To max health", function()
         game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
         end)
 
@@ -324,8 +329,5 @@ end)
     
 Credits:NewButton("Join My Discord", "Discord", function()
 end)
-
-
-
 
 end    
