@@ -134,7 +134,8 @@ elseif game.PlaceId == 155615604 then
         end)
      
         --Player
-        local PlayerSection = Main:NewSection("Player")
+        local Player = Window:NewTab("Player")
+        local PlayerSection = Player:NewSection("Player")
 
     PlayerSection:NewSlider("Walkspeed", "Changes the player walkspeed", 250, 16, function(s)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
